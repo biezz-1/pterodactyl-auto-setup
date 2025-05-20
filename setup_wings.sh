@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+# --- Auto-fix line endings and permissions ---
+if command -v dos2unix >/dev/null 2>&1; then
+  sudo dos2unix "$0"
+fi
+sudo chmod +x "$0"
+# --------------------------------------------
+
 echo "=== [1/6] Update & Install Dependencies ==="
 apt update && apt upgrade -y
 apt install -y curl wget tar xz-utils git ufw

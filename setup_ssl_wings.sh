@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+# --- Auto-fix line endings and permissions ---
+if command -v dos2unix >/dev/null 2>&1; then
+  sudo dos2unix "$0"
+fi
+sudo chmod +x "$0"
+# --------------------------------------------
+
 if [ -z "$1" ]; then
     echo "Usage: sudo bash setup_ssl_wings.sh your-node-domain.com"
     exit 1
